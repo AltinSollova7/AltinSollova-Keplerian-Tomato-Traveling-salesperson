@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "C:\\Users\\Altin\\miniconda3\\envs\\tomato\\python.exe",
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\Users\\Altin\\miniconda3\\envs\\tomato;C:\\Users\\Altin\\miniconda3\\envs\\tomato\\Scripts;C:\\Users\\Altin\\miniconda3\\envs\\tomato\\Library\\bin;${env:PATH}"
+    }
+}
