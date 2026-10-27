@@ -1,13 +1,4 @@
-"""
-Keplerian Tomato TSP - zgjidhës i plotë (greedy me rrjet kohor + përjashtime).
-NUK është testuar këtu (pa pykep). Ekzekuto lokalisht:
 
-    python kttsp_solver.py small.kttsp small
-    python kttsp_solver.py medium.kttsp medium
-    python kttsp_solver.py large.kttsp large
-
-Duhen: util.py (TomatoProblem nga SpOC4 GitHub), pykep 2.x, numpy.
-"""
 import sys, json
 import numpy as np
 try:
