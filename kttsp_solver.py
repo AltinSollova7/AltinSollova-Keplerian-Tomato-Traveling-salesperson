@@ -25,8 +25,7 @@ def read_instance(path):
 
 # ---------------------------------------------------------------- ndihmës
 def neighbour_order(orb, K):
-    """Për çdo tomate, K kandidatët më 'të ngjashëm' (heuristikë: a, i, Omega).
-    Vetëm për të shpejtuar kërkimin; nuk është kufi i saktë i ΔV."""
+    
     a = orb[:, 0] / 1e6
     i, Om = orb[:, 2], orb[:, 3]
     n = np.stack([np.sin(i) * np.sin(Om), -np.sin(i) * np.cos(Om), np.cos(i)], 1)
@@ -59,7 +58,7 @@ class Solver:
         return v
 
     def best_move(self, cur, t_now, cands, limit, waits, tofs):
-        """Transferi me arritje më të hershme drejt ndonjë kandidati, ΔV <= limit."""
+       
         best = None  # (arrival, j, t_dep, tof, dv)
         tmax = self.P["tmax"]
         for j in cands:
@@ -125,7 +124,7 @@ class Solver:
                       f"thirrje={self.ncalls}")
         return ts + tof_list + path, t_now
 
-    # ------------------------------------------------------------ verifikim
+   
     def verify(self, x):
         P, N = self.P, self.N
         ts, tofs = x[:N - 1], x[N - 1:2 * N - 2]
@@ -146,7 +145,7 @@ class Solver:
         return ok, ex, ts[-1] + tofs[-1]
 
 
-# ---------------------------------------------------------------- main
+
 if __name__ == "__main__":
     path = sys.argv[1] if len(sys.argv) > 1 else "small.kttsp"
     name = sys.argv[2] if len(sys.argv) > 2 else "small"
