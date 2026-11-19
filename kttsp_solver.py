@@ -147,8 +147,8 @@ class Solver:
 
 
 if __name__ == "__main__":
-    path = sys.argv[1] if len(sys.argv) > 1 else "small.kttsp"
-    name = sys.argv[2] if len(sys.argv) > 2 else "small"
+    path = sys.argv[1] if len(sys.argv) > 1 else "easy.kttsp"
+    name = sys.argv[2] if len(sys.argv) > 2 else "easy"
     S = Solver(path)
     print(f"{S.N} tomate, parametra: {S.P}")
 
