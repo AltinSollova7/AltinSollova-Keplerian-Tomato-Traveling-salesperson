@@ -1,24 +1,4 @@
-"""
-Zgjidhës me blloqe për instancat si Medium: 3 grupe (ekuatorial, polar, retrograd),
-secili me domate të mëdha dhe të vogla në të njëjtin plan, të lidhura nga 2 shkallë
-inklinimesh. Rendi i blloqeve caktohet nga struktura; brenda një grupi kërkimi është
-i lirë me kthim prapa. NUK është testuar nga unë.
 
-Parametrat e algoritmit (funksioni run):
-  mode = "earliest"  -> brenda grupit zgjedh domaten që arrihet më herët
-  mode = "random"    -> brenda grupit zgjedh domaten në rend të rastësishëm
-  B                  -> sa kandidatë provohen në çdo hap (B=1: pa kthim prapa)
-
-Duhet të jetë në dosje me kttsp_solver.py, kttsp_solver5.py dhe util_user.py.
-
-    python kttsp_block.py easy.kttsp small_blocks
-    python kttsp_block.py medium.kttsp medium
-
-VERSIONI PER INSTANCA TE MADHE (kttsp_large.py): brenda nje blloku "free" me qindra domate
-nuk provohen te gjitha kandidatet ne cdo hap (do te zgjaste dite). Nga kandidatet zgjidhen
-vetem K me te afert ne hapesire ne momentin t (llogaritje me numpy, pa pykep); vetem nese
-asnje prej tyre nuk ka kalim te lejuar provohen te tjeret.
-"""
 import sys, time, json
 import numpy as np
 from kttsp_solver import Solver
@@ -29,8 +9,7 @@ MU_MOON = 4.9048695e12
 
 
 def positions(orb, idx, t, t0):
-    """Pozicionet (n,3) te domateve idx ne kohen t [dite]. Elementet: a,e,i,Omega,omega,M0
-    (pykep.planet.keplerian merr anomalite mesatare); Kepler i zgjidhur me iteracion."""
+    
     a, e, inc, W, w, M0 = (orb[idx, k] for k in range(6))
     M = M0 + np.sqrt(MU_MOON / a ** 3) * (t - t0) * 86400.0
     E = M.copy()
@@ -118,7 +97,7 @@ def dfs(S, plan, start, time_limit, B=3, mode="earliest", seed=0, K=6):
             cands = [int(idx[k]) for k in order[:K]]
             rest = [int(idx[k]) for k in order[K:]]
         out = try_cands(cands, cur, t, ex_left)
-        while not out and rest:          # asnje nga K me te afertit nuk shkon -> provo te tjeret
+        while not out and rest:         
             cands, rest = rest[:K], rest[K:]
             out = try_cands(cands, cur, t, ex_left)
         if mode != "random":
@@ -197,7 +176,7 @@ def run(path, name, mode="earliest", B=3, time_limit=1800, K=6):
 if __name__ == "__main__":
     import os
 
-    # python kttsp_large.py large.kttsp large [K] [ore]
+    
     if len(sys.argv) < 2:
         print("Perdorimi: python kttsp_large.py <instanca.kttsp> [emri] [K] [ore_per_nisje]")
         sys.exit(1)
